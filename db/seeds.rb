@@ -21,4 +21,12 @@ User.create!(name:  "Example User",
           activated: true,
           activated_at: Time.zone.now)
   end
+
+# Generate microposts for a subset of users.
+users = User.order(:created_at).take(6)
+50.times do |n|
+  content = "#{n + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  users.each { |user| user.microposts.create!(content: content) }
+end
+
   
